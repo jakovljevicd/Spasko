@@ -16,9 +16,42 @@
         <span class="navbar-toggler-icon primary"></span>
       </button>
       <div class="collapse navbar-collapse navbar-right" id="navContent">
-        <ul class="navbar-nav" v-for="menuItem in menuItems" :key="menuItem">
-          <li class="nav-item">
-            <a href="#" class="nav-link">{{ menuItem[lang.value] }}</a>
+        <ul class="navbar-nav">
+          <li
+            class="nav-item"
+            :class="{ dropdown: index == 'animals' }"
+            v-for="(menuItem, index) in menuItems"
+            :key="menuItem"
+          >
+            <router-link
+              class="nav-link"
+              :to="{ name: index }"
+              v-if="index != 'animals'"
+              >{{ menuItem[lang.value] }}</router-link
+            >
+            <router-link
+              class="nav-link dropdown-toggle"
+              :to="{ name: index }"
+              v-if="index == 'animals'"
+              >{{ menuItem[lang.value] }}</router-link
+            >
+            <ul class="dropdown-menu" v-if="index == 'animals'">
+              <li>
+                <router-link class="dropdown-item" to="/">{{
+                  animaTypes["dogs"][lang.value]
+                }}</router-link>
+              </li>
+              <li>
+                <router-link class="dropdown-item" to="/">{{
+                  animaTypes["cats"][lang.value]
+                }}</router-link>
+              </li>
+              <li>
+                <router-link class="dropdown-item" to="/">{{
+                  animaTypes["birds"][lang.value]
+                }}</router-link>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>
@@ -30,16 +63,20 @@
 .navbar {
   background-color: #00c853;
 }
+.navbar .nav-item:hover .dropdown-menu {
+  display: block;
+}
 #navContent {
   justify-content: right;
 }
 #logo {
-  height: 40px;
+  height: 60px;
 }
 </style>
 
 <script>
 import menuItems from "@/data/menuItems.js";
+import animalsDropdown from "@/data/animalsDropdown.js";
 import { lang } from "@/data/lang.js";
 
 export default {
@@ -47,6 +84,8 @@ export default {
   data() {
     return {
       menuItems: menuItems,
+      menuRoutes: Object.keys(menuItems),
+      animaTypes: animalsDropdown,
       lang,
     };
   },

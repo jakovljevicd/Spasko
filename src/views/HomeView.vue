@@ -1,17 +1,17 @@
 <template>
-  <div class="home">
-    <Header />
-  </div>
+  <div class="home"></div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Header from "@/components/Header.vue";
+import { lang } from "@/data/lang.js";
 
 export default {
   name: "HomeView",
-  components: {
-    Header,
+  components: {},
+  created() {
+    if (lang.value == 0) document.title = "Početna - Spasko";
+    else document.title = "Home - Spasko";
   },
 };
 </script>
