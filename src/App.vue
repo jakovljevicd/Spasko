@@ -3,6 +3,7 @@
   <!-- <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> -->
   <router-view />
+  <Footer />
 </template>
 
 <style>
@@ -17,9 +18,10 @@
 
 <script>
 import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   name: "App",
-  components: { Header },
+  components: { Header, Footer },
 };
 </script>
