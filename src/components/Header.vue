@@ -53,6 +53,24 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <router-link :to="{ name: 'home' }">
+              <img
+                v-if="lang.value == 0"
+                @click="lang.switch()"
+                class="flag nav-link"
+                src="../assets/rs.svg"
+                alt="rs"
+              />
+              <img
+                v-if="lang.value == 1"
+                @click="lang.switch()"
+                class="flag nav-link"
+                src="../assets/us.svg"
+                alt="us"
+              />
+            </router-link>
+          </li>
         </ul>
       </div>
     </div>
@@ -71,6 +89,12 @@
 }
 #logo {
   height: 60px;
+}
+.nav-item {
+  align-self: center;
+}
+.flag {
+  height: 40px;
 }
 </style>
 
