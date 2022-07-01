@@ -27,49 +27,47 @@
               class="nav-link"
               :to="{ name: index }"
               v-if="index != 'animals'"
-              >{{ menuItem[lang.value] }}</router-link
+              >{{ menuItem[lang.get()] }}</router-link
             >
             <router-link
               class="nav-link dropdown-toggle"
               :to="{ name: index }"
               v-if="index == 'animals'"
-              >{{ menuItem[lang.value] }}</router-link
+              >{{ menuItem[lang.get()] }}</router-link
             >
             <ul class="dropdown-menu" v-if="index == 'animals'">
               <li>
                 <router-link class="dropdown-item" to="/">{{
-                  animaTypes["dogs"][lang.value]
+                  animaTypes["dogs"][lang.get()]
                 }}</router-link>
               </li>
               <li>
                 <router-link class="dropdown-item" to="/">{{
-                  animaTypes["cats"][lang.value]
+                  animaTypes["cats"][lang.get()]
                 }}</router-link>
               </li>
               <li>
                 <router-link class="dropdown-item" to="/">{{
-                  animaTypes["birds"][lang.value]
+                  animaTypes["birds"][lang.get()]
                 }}</router-link>
               </li>
             </ul>
           </li>
           <li class="nav-item">
-            <router-link :to="{ name: 'home' }">
-              <img
-                v-if="lang.value == 0"
-                @click="lang.switch()"
-                class="flag nav-link"
-                src="../assets/rs.svg"
-                alt="rs"
-              />
-              <img
-                v-if="lang.value == 1"
-                @click="lang.switch()"
-                class="flag nav-link"
-                src="../assets/us.svg"
-                alt="us"
-              />
-            </router-link>
+            <img
+              v-if="lang.get() == 0"
+              @click="switchLang()"
+              class="flag nav-link"
+              src="../assets/rs.svg"
+              alt="rs"
+            />
+            <img
+              v-if="lang.get() == 1"
+              @click="switchLang()"
+              class="flag nav-link"
+              src="../assets/us.svg"
+              alt="us"
+            />
           </li>
         </ul>
       </div>
@@ -95,6 +93,10 @@
 }
 .flag {
   height: 40px;
+  cursor: pointer;
+}
+.flag:hover {
+  opacity: 0.9;
 }
 </style>
 
@@ -112,6 +114,12 @@ export default {
       animaTypes: animalsDropdown,
       lang,
     };
+  },
+  methods: {
+    switchLang() {
+      lang.switch();
+      this.$router.go();
+    },
   },
 };
 </script>

@@ -1,6 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import AdvertisementsView from '@/views/AdvertisementsView.vue'
+import AddAdvertisementView from '@/views/AddAdvertisementView.vue'
+import AccountView from '@/views/AccountView.vue'
 
 const routes = [
   {
@@ -19,11 +21,13 @@ const routes = [
   },
   {
     path: '/add_advertisement',
-    name: 'addAdvertisement'
+    name: 'addAdvertisement',
+    component: AddAdvertisementView
   },
   {
     path: '/account',
-    name: 'myAccount'
+    name: 'myAccount',
+    component: AccountView
   },
   {
     path: '/about_us',
