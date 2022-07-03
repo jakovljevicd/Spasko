@@ -5,6 +5,8 @@ import AdvertisementView from '@/views/AdvertisementView.vue'
 import AddAdvertisementView from '@/views/AddAdvertisementView.vue'
 import AccountView from '@/views/AccountView.vue'
 import Dogs from '@/views/DogsView.vue'
+import AnimalView from'@/views/AnimalView.vue'
+import aboutUsView from '@/views/aboutUsView.vue'
 
 const routes = [
   {
@@ -38,13 +40,20 @@ const routes = [
   },
   {
     path: '/about_us',
-    name: 'aboutUs'
+    name: 'aboutUs',
+    component: aboutUsView
   },
   {
-    path: '/dogs',
+    path: '/dogs/:type',
     name: 'dogs',
     component: Dogs
+  },
+  {
+    path:'/animal/:id',
+    name: 'animalView',
+    component: AnimalView
   }
+
 ]
 
 const router = createRouter({

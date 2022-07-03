@@ -1,6 +1,10 @@
 <template>
-  <div class="add container col-lg-8">
-    <Animal v-for="dog in dogs" :key="dog.id" :animal="dog"></Animal>
+  <div class="add container col-lg-6"  >
+    
+      <Animal v-for="dog in types"  :key="dog.type" :animal="dog"  ></Animal>
+     
+     
+    
   </div>
 </template>
 <style scoped>
@@ -25,20 +29,24 @@
 <script>
 import { lang } from "@/data/lang.js";
 import Animal from "../components/Animal.vue";
-import dogs from "../data/dogs.js";
+import animals from "../data/animals.js";
 
 export default {
   name: "DogsView",
   components: {
     Animal,
   },
+ 
   created() {
-    if (lang.get() == 0) document.title = "Izgubljeni ljubimci - Spasko";
-    else document.title = "Lost pets - Spasko";
+    if (lang.get() == 0) document.title = "Zivotinje u sklonistu - Spasko";
+    else document.title = "Animals housed at - Spasko";
+    this.types = this.animals.filter(animal =>animal.type==this.$route.params.type)
   },
   data() {
     return {
-      dogs: dogs,
+      animals: animals,
+      types :  {}
+      
     };
   },
 };
