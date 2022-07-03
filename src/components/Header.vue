@@ -37,17 +37,17 @@
             >
             <ul class="dropdown-menu" v-if="index == 'animals'">
               <li>
-                <router-link class="dropdown-item" to="/dogs">{{
+                <router-link class="dropdown-item" :to='/dogs/+ "dog"'>{{
                   animaTypes["dogs"][lang.get()]
                 }}</router-link>
               </li>
               <li>
-                <router-link class="dropdown-item" to="/">{{
+                <router-link class="dropdown-item" :to='/dogs/+ "cat"'>{{
                   animaTypes["cats"][lang.get()]
                 }}</router-link>
               </li>
               <li>
-                <router-link class="dropdown-item" to="/">{{
+                <router-link class="dropdown-item" :to='/dogs/+ "bird"'>{{
                   animaTypes["birds"][lang.get()]
                 }}</router-link>
               </li>
