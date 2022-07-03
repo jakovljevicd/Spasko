@@ -1,10 +1,16 @@
 <template>
   <div class="advertisements container col-lg-8">
+    <Breadcrumb
+      class="row justify-content-center mt-4"
+      :crumbs="crumbs"
+      @selected="selected"
+    />
     <Advertisement
       v-for="(advertisement, index) in advertisements"
       :key="advertisement"
       :advertisement="advertisement"
       :index="index"
+      :button="'more'"
     />
   </div>
 </template>
@@ -24,11 +30,13 @@
 import { lang } from "@/data/lang.js";
 import advertisements from "@/data/advertisements.js";
 import Advertisement from "@/components/Advertisement.vue";
+import Breadcrumb from "@/components/Breadcrumb.vue";
 
 export default {
   name: "AdvertisementsView",
   components: {
     Advertisement,
+    Breadcrumb,
   },
   created() {
     if (lang.get() == 0) document.title = "Izgubljeni ljubimci - Spasko";
@@ -41,7 +49,22 @@ export default {
     return {
       lang: lang,
       advertisements: [],
+      crumbs: [
+        {
+          name: ["Početna", "Home"],
+          path: "/",
+        },
+        {
+          name: ["Izgubljeni ljubimci", "Lost pets"],
+          path: "/advertisements",
+        },
+      ],
     };
+  },
+  methods: {
+    selected(crumb) {
+      this.$router.push({ path: crumb.path });
+    },
   },
 };
 </script>

@@ -1,6 +1,16 @@
 <template>
   <div class="container col-lg-8">
-    <div class="shadow row col-lg-12">
+    <Breadcrumb
+      class="row justify-content-center mt-4"
+      :crumbs="crumbs"
+      @selected="selected"
+    />
+    <Advertisement
+      :advertisement="advertisement"
+      :index="this.$route.params.id"
+      :button="'print'"
+    />
+    <!-- <div class="shadow row col-lg-12">
       <h2>{{ advertisement.name }}</h2>
       <hr />
       <h4>{{ content.description[lang.get()] }}:</h4>
@@ -13,7 +23,7 @@
           {{ content.print[lang.get()] }}
         </button>
       </div>
-    </div>
+    </div> -->
     <div class="shadow comments row col-lg-12">
       <h2>{{ content.comments[lang.get()] }}</h2>
       <hr />
@@ -62,9 +72,15 @@ textarea {
 import { lang } from "@/data/lang.js";
 import content from "@/data/advertisementContent.js";
 import advertisements from "@/data/advertisements.js";
+import Advertisement from "@/components/Advertisement.vue";
+import Breadcrumb from "@/components/Breadcrumb.vue";
 
 export default {
   name: "AdvertisementView",
+  components: {
+    Advertisement,
+    Breadcrumb,
+  },
   created() {
     if (lang.get() == 0) document.title = "Izgubljeni ljubimac - Spasko";
     else document.title = "Lost pet - Spasko";
@@ -79,6 +95,20 @@ export default {
       content: content,
       advertisement: [],
       newcomment: "",
+      crumbs: [
+        {
+          name: ["Početna", "Home"],
+          path: "/",
+        },
+        {
+          name: ["Izgubljeni ljubimci", "Lost pets"],
+          path: "/advertisements",
+        },
+        {
+          name: ["Ljubimac", "Pet"],
+          path: "/",
+        },
+      ],
     };
   },
   methods: {
@@ -92,8 +122,8 @@ export default {
       localStorage.setItem("advertisements", JSON.stringify(storedAds));
       this.$router.go();
     },
-    printAd() {
-      window.print();
+    selected(crumb) {
+      this.$router.push({ path: crumb.path });
     },
   },
 };

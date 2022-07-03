@@ -1,5 +1,10 @@
 <template>
   <div class="add container col-lg-8">
+    <Breadcrumb
+      class="row justify-content-center mt-4"
+      :crumbs="crumbs"
+      @selected="selected"
+    />
     <form class="shadow col-lg-12" action="">
       <h2>{{ content.title[lang.get()] }}</h2>
       <hr />
@@ -45,10 +50,11 @@ h2 {
 import content from "@/data/addAdvertisementContent.js";
 import advertisements from "@/data/advertisements.js";
 import { lang } from "@/data/lang.js";
+import Breadcrumb from "@/components/Breadcrumb.vue";
 
 export default {
   name: "AddAdvertisementsView",
-  components: {},
+  components: { Breadcrumb },
   created() {
     if (lang.get() == 0) document.title = "Novi oglas - Spasko";
     else document.title = "New advertisement - Spasko";
@@ -59,6 +65,16 @@ export default {
       lang: lang,
       text: "",
       contact: "",
+      crumbs: [
+        {
+          name: ["Početna", "Home"],
+          path: "/",
+        },
+        {
+          name: ["Dodaj oglas", "Add advertisement"],
+          path: "/add_advertisements",
+        },
+      ],
     };
   },
   methods: {
@@ -70,9 +86,13 @@ export default {
         name: localStorage.getItem("user"),
         description: this.text,
         contact: this.contact,
+        comments: [],
       });
       localStorage.setItem("advertisements", JSON.stringify(storedAds));
       this.$router.push("/account");
+    },
+    selected(crumb) {
+      this.$router.push({ path: crumb.path });
     },
   },
 };
