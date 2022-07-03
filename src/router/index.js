@@ -3,6 +3,7 @@ import HomeView from '@/views/HomeView.vue'
 import AdvertisementsView from '@/views/AdvertisementsView.vue'
 import AddAdvertisementView from '@/views/AddAdvertisementView.vue'
 import AccountView from '@/views/AccountView.vue'
+import Dogs from '@/views/DogsView.vue'
 
 const routes = [
   {
@@ -33,6 +34,11 @@ const routes = [
     path: '/about_us',
     name: 'aboutUs'
   },
+  {
+    path: '/dogs',
+    name: 'dogs',
+    component: Dogs
+  }
 ]
 
 const router = createRouter({
