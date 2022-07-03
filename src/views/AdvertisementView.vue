@@ -35,6 +35,11 @@
       <div v-if="advertisement.comments.length == 0">
         <p>{{ content.noComments[lang.get()] }}</p>
       </div>
+      <template v-else v-for="comment in advertisement.comments" :key="comment">
+        <h4>{{ comment.user }}</h4>
+        <p>{{ comment.text }}</p>
+        <hr />
+      </template>
     </div>
   </div>
 </template>
@@ -85,6 +90,7 @@ export default {
       let storedAds = JSON.parse(localStorage.getItem("advertisements"));
       storedAds[this.$route.params.id].comments.push(comment);
       localStorage.setItem("advertisements", JSON.stringify(storedAds));
+      this.$router.go();
     },
     printAd() {
       window.print();
