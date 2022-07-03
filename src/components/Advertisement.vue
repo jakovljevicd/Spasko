@@ -7,9 +7,9 @@
     <div class="col-lg-9">
       <h4>{{ content.contact[lang.get()] }} : {{ advertisement.contact }}</h4>
     </div>
-    <div class="right-button col-lg-3">
+    <div class="col-lg-3">
       <router-link :to="{ name: 'advertisement', params: { id: index } }">
-        <button class="btn">{{ content.button[lang.get()] }}</button>
+        <button class="btn">{{ content.more[lang.get()] }}</button>
       </router-link>
     </div>
   </div>
@@ -22,9 +22,6 @@ h2 {
 }
 p {
   text-align: justify;
-}
-.right-button {
-  text-align: right;
 }
 </style>
 

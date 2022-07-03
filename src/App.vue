@@ -21,8 +21,15 @@
   height: -webkit-calc(100% - 126px); /* google, safari */
   height: -moz-calc(100% - 126px); /* firefox */
 }
+.content > div {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 .btn {
   background-color: #c80075;
+  color: #fff;
 }
 .btn:hover {
   opacity: 0.9;
@@ -31,7 +38,6 @@
 }
 .shadow {
   border-radius: 10px;
-  box-shadow: 0px 0px 10px 1px #888888;
   padding: 30px;
   margin: 10px;
 }
@@ -52,5 +58,8 @@ import Footer from "@/components/Footer.vue";
 export default {
   name: "App",
   components: { Header, Footer },
+  created() {
+    localStorage.setItem("user", "Test");
+  },
 };
 </script>
