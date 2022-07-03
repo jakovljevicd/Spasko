@@ -1,29 +1,43 @@
 <template>
   <div class="add container col-lg-8">
-    <form class="shadow" action="">
-      <h4>{{ content.title[lang.get()] }}</h4>
-      <label class="row" for="text">{{
-        content.description[lang.get()]
-      }}</label>
-      <textarea class="row" type="text" name="text" v-model="text" />
-      <label class="row" for="contact">{{ content.contact[lang.get()] }}</label>
-      <input class="row" type="text" name="contact" v-model="contact" />
-      <button @click="addAdd($event)" class="btn row" type="submit">
-        {{ content.submit[lang.get()] }}
-      </button>
+    <form class="shadow col-lg-12" action="">
+      <h2>{{ content.title[lang.get()] }}</h2>
+      <hr />
+      <div class="row">
+        <div class="col-lg-9">
+          <label class="col-lg-12" for="text"
+            ><h4>{{ content.description[lang.get()] }}:</h4>
+          </label>
+          <textarea class="col-lg-12" type="text" name="text" v-model="text" />
+          <label class="col-lg-12" for="contact"
+            ><h4>{{ content.contact[lang.get()] }}:</h4></label
+          >
+          <input
+            class="col-lg-12"
+            type="text"
+            name="contact"
+            v-model="contact"
+          />
+        </div>
+        <div class="btn-div col-lg-3">
+          <button @click="addAd($event)" class="btn" type="submit">
+            {{ content.submit[lang.get()] }}
+          </button>
+        </div>
+      </div>
     </form>
   </div>
 </template>
 
 <style scoped>
-.add {
-  display: flex;
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
+h4,
+h2 {
+  text-align: left;
 }
-.row {
-  margin: 0.5rem;
+.btn-div {
+  display: flex;
+  justify-content: center;
+  align-items: end;
 }
 </style>
 
@@ -48,12 +62,12 @@ export default {
     };
   },
   methods: {
-    addAdd(event) {
+    addAd(event) {
       event.preventDefault();
       let storedAds =
         JSON.parse(localStorage.getItem("advertisements")) || advertisements;
       storedAds.push({
-        name: "user",
+        name: localStorage.getItem("user"),
         description: this.text,
         contact: this.contact,
       });
