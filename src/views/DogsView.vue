@@ -1,28 +1,10 @@
 <template>
-  <div class="add container col-lg-12">
-        <table>
-
-     
-            <tr v-for='dog in dogs' :key="dog.id">
-              <div class = "shadow animals" >
-
-
-                <td>
-                  <Animal :animal='dog'></Animal>
-                    
-                       
-                    
-                </td>
-              </div>
-
-            </tr>
-        </table>
-    
+  <div class="add container col-lg-8">
+    <Animal v-for="dog in dogs" :key="dog.id" :animal="dog"></Animal>
   </div>
 </template>
 <style scoped>
 .animals {
-  
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -41,26 +23,23 @@
 </style>
 
 <script>
-
 import { lang } from "@/data/lang.js";
-import Animal from '../components/Animal.vue'
-import dogs from '../data/dogs.js'
+import Animal from "../components/Animal.vue";
+import dogs from "../data/dogs.js";
 
 export default {
   name: "DogsView",
   components: {
-    Animal
+    Animal,
   },
   created() {
     if (lang.get() == 0) document.title = "Izgubljeni ljubimci - Spasko";
     else document.title = "Lost pets - Spasko";
   },
-  data(){
-    return{
-      dogs:dogs
-    }
-  }
- 
-  
+  data() {
+    return {
+      dogs: dogs,
+    };
+  },
 };
 </script>
