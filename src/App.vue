@@ -1,8 +1,8 @@
 <template>
   <Header />
-  <!-- <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> -->
-  <router-view />
+  <div class="content">
+    <router-view />
+  </div>
   <Footer />
 </template>
 
@@ -13,9 +13,23 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #000000;
+  height: 100%;
+}
+.content {
+  height: calc(100% - 126px); /* opera */
+  height: -o-calc(100% - 126px); /* opera */
+  height: -webkit-calc(100% - 126px); /* google, safari */
+  height: -moz-calc(100% - 126px); /* firefox */
+}
+.content > div {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .btn {
   background-color: #c80075;
+  color: #fff;
 }
 .btn:hover {
   opacity: 0.9;
@@ -24,8 +38,16 @@
 }
 .shadow {
   border-radius: 10px;
-  box-shadow: 0px 0px 10px 1px #888888;
   padding: 30px;
+  margin: 10px;
+}
+html {
+  height: 100%;
+}
+body {
+  min-height: 600px;
+  margin-top: 86px;
+  margin-bottom: 40px;
 }
 </style>
 
@@ -36,5 +58,8 @@ import Footer from "@/components/Footer.vue";
 export default {
   name: "App",
   components: { Header, Footer },
+  created() {
+    localStorage.setItem("user", "Test");
+  },
 };
 </script>
