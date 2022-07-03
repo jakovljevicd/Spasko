@@ -10,8 +10,13 @@ export default {
   name: "AdvertisementsView",
   components: {},
   created() {
-    if (lang.value == 0) document.title = "Izgubljene životinje - Spasko";
+    if (lang.get() == 0) document.title = "Izgubljeni ljubimci - Spasko";
     else document.title = "Lost pets - Spasko";
+  },
+  data() {
+    return {
+      lang: lang,
+    };
   },
 };
 </script>

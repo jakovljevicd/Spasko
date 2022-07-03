@@ -10,7 +10,7 @@ export default {
   name: "HomeView",
   components: {},
   created() {
-    if (lang.value == 0) document.title = "Početna - Spasko";
+    if (lang.get() == 0) document.title = "Početna - Spasko";
     else document.title = "Home - Spasko";
   },
 };
