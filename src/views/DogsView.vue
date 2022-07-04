@@ -89,7 +89,7 @@ export default {
  
   created() {
     if (lang.get() == 0) document.title = "Zivotinje u sklonistu - Spasko";
-    else document.title = "Animals housed at - Spasko";
+    else document.title = "Animals housed at shelter - Spasko";
     
     this.types = this.animals.filter(animal =>animal.type==this.$route.params.type)
     this.types_og = this.animals.filter(animal =>animal.type==this.$route.params.type)
@@ -121,7 +121,7 @@ export default {
   methods: {
     search_weight() {
       if(this.weight != ""){
-        this.types = this.types_og.filter(type =>type.weight==Number(this.weight))
+        this.types = this.types_og.filter(type =>type.weight>=Number(this.weight))
 
       }
       else{
@@ -133,7 +133,7 @@ export default {
     },
     search_age() {
       if(this.age != ""){
-        this.types = this.types_og.filter(type =>type.age==Number(this.age))
+        this.types = this.types_og.filter(type =>type.age>=Number(this.age))
      
 
       }
