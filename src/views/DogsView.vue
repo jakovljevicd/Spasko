@@ -102,7 +102,7 @@ export default {
     search_weight() {
       if (this.weight != "") {
         this.types = this.types_og.filter(
-          (type) => type.weight == Number(this.weight)
+          (type) => type.weight >= Number(this.weight)
         );
       } else {
         this.types = this.types_og;
@@ -111,7 +111,7 @@ export default {
     search_age() {
       if (this.age != "") {
         this.types = this.types_og.filter(
-          (type) => type.age == Number(this.age)
+          (type) => type.age >= Number(this.age)
         );
       } else {
         this.types = this.types_og;
