@@ -1,5 +1,5 @@
 <template>
-    <div class="container col-lg-8">
+    <div class="info container col-lg-8">
         <Breadcrumb
             class="row justify-content-center mt-4"
             :crumbs="crumbs"
@@ -16,15 +16,16 @@
             <h4>{{ content.weight[lang.get()] }} : {{ animal.weight }}</h4>
 
         </div>
+        <div >
+            <h2>{{ content.photo_gallery[lang.get()] }}</h2>
 
-        <div class = " flex-container shadow ">
+        </div>
 
-            <div >
-                <h4>{{ content.photo_gallery[lang.get()] }}</h4>
+        <div class = " flex-container shadow col-lg-12 ">
 
-            </div>
+            
            
-           <hr>
+           
            
            
             
@@ -38,13 +39,21 @@
             
               
         </div>
-
-        <div class = "flex-container  shadow col-lg-12">
-            <div >
-                <h4>{{ content.video_gallery[lang.get()] }}</h4>
+            
+            
+            
+            
+               
+            
+              
+       <div >
+            <h2>{{ content.video_gallery[lang.get()] }}</h2>
                 
-            </div>
-            <hr>
+        </div>
+
+        <div class = "  shadow col-lg-12">
+            
+            
             <div>
                 <span>
                     <iframe  v-for="path in animal.media2" :key = path
@@ -77,6 +86,7 @@ img{
     width:100%;
     height:100%
     
+    
 }
 h4{
     text-align:center;
@@ -84,24 +94,25 @@ h4{
 p{
     text-align:center;
 }
-.add {
-  display: flex;
-  
-  align-items: right;
-  justify-content: right;
-  
-}
+
 .info {
-  height: 100%;
-  display: flex;
+   height: 100%;
+  align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
   margin-bottom: 40px;
 }
 .flex-container {
   display: flex;
   
   
+}
+.wraper{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    flex-wrap:wrap;
+    flex: 1 1 200px;
+
 }
 </style>
 
