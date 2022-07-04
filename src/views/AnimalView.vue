@@ -1,5 +1,10 @@
 <template>
     <div class="container col-lg-8">
+        <Breadcrumb
+            class="row justify-content-center mt-4"
+            :crumbs="crumbs"
+            @selected="selected"
+        />
         <div class = " row shadow  col-lg-12" >
             
             <h2>{{ animal.name }}</h2>
@@ -13,7 +18,14 @@
         </div>
 
         <div class = " flex-container shadow ">
-           <h4>Galerija slika</h4>
+
+            <div >
+                <h4>{{ content.photo_gallery[lang.get()] }}</h4>
+
+            </div>
+           
+           <hr>
+           
            
             
             <div v-for="path in animal.media" :key = path>
@@ -29,8 +41,10 @@
 
         <div class = "flex-container  shadow col-lg-12">
             <div >
-                <h4>Galerija snimaka</h4>
+                <h4>{{ content.video_gallery[lang.get()] }}</h4>
+                
             </div>
+            <hr>
             <div>
                 <span>
                     <iframe  v-for="path in animal.media2" :key = path
@@ -95,8 +109,14 @@ p{
 import animals from "../data/animals.js";
 import { lang } from "@/data/lang.js";
 import content from "@/data/animalContent.js";
+import Breadcrumb from "@/components/Breadcrumb.vue";
+
 export default{
         name: 'AnimalView',
+        components: {
+            Breadcrumb,
+    
+        },
         created(){
             if (lang.get() == 0) document.title = "Detalji zivotinja";
             else document.title = "Animal details";
@@ -108,8 +128,27 @@ export default{
                 animals: animals,
                 animal: {},
                 content: content,
-                lang: lang
+                lang: lang,
+                crumbs: [
+                    {
+                        name: ["Početna", "Home"],
+                        path: "/",
+                    },
+                    {
+                        name: ["Zivotinje", "Animals"],
+                        path: "/dogs/:type",
+                    },
+                    {
+                        name: ["Zivotinja", "Animal"],
+                        path: "/",
+                    },
+                ],
             }
-        }
+        },
+        methods: {
+                selected(crumb) {
+                this.$router.push({ path: crumb.path });
+        },
+  },
     }
 </script>
