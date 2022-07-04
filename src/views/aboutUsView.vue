@@ -1,19 +1,20 @@
 <template>
 <div class = " home col-lg-12">
+    <div class = "home col-lg-6">
+        <Breadcrumb
+      class="row justify-content-center mt-4"
+      :crumbs="crumbs"
+      @selected="selected"
+    />
+
+    </div>
+    
     <div class = " shadow   col-lg-8">
     <h1>
         <b>{{ content.title[lang.get()] }}</b>
     </h1>
     <p>
-        <b>Sajt Spasko azila je rad Danice Jakovljevic i Petra Jovovica.
-        Omogucava jasan pregled  zivotinja smestenih u azilu  
-        kao i laku ostavljanje,pregledanje i komentarisanje oglasa.
-        Kontakt forme oglasavača su uvek brzo dostupne.
-        Navigacija na sajtu nikad nije bila laksa uz naš
-        intuitivni navigacioni meni.Spasko sajt je
-        ne samo doprineo udomljavanju mnogobrojnih 
-        životinja već je zbog svoje inovativne tehnologije
-        nagrađen i Turingovom nagradom 2021. godine.
+        <b>{{ content.text[lang.get()] }}
 
         </b>
     </p>
@@ -72,10 +73,12 @@ p{
 <script>
 import { lang } from "@/data/lang.js";
 import content from "@/data/aboutUsContent.js";
+import Breadcrumb from "@/components/Breadcrumb.vue";
 
 export default {
   name: "AboutUsView",
   components: {
+    Breadcrumb,
     
   },
  
@@ -88,10 +91,25 @@ export default {
      return {
       content: content,
       lang: lang,
+      crumbs: [
+        {
+          name: ["Početna", "Home"],
+          path: "/",
+        },
+        {
+          name: ["O nama", "About us"],
+          path: "/about_us",
+        },
+      ],
     };
    
       
     
+  },
+  methods: {
+    selected(crumb) {
+      this.$router.push({ path: crumb.path });
+    },
   },
 };
 </script>
