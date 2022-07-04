@@ -53,7 +53,7 @@ const animals = [{
     desc:"Veoma tigrasta",
     weight: 32,
     age: 1,
-    media: ["../../images/41.png","../../images/42.png"],
+    media: ["../../images/41.png","../../images/42.png","../../images/43.png","../../images/44.png"],
     media2:["https://www.youtube.com/embed/smfEF8xeBu4"
     ]
    

@@ -1,40 +1,45 @@
 <template>
-  <div class = "add container col-lg-6">
-    <Breadcrumb
-      class="row justify-content-center mt-4"
-      :crumbs="crumbs"
-      @selected="selected"
-    />
+  <div class="add container col-lg-8">
+    <div class = "add row  col-lg-12">
+      <Breadcrumb
+        class="row justify-content-center mt-4"
+        :crumbs="crumbs"
+        @selected="selected"
+      />
     </div>
 
 
-  <div class = "add container col-lg-6">
-    <div class = " search col-lg-6">
+  <div class = "row  col-lg-12">
+      <div class = " search col-lg-6">
       
-      <input type="text" id="fname" name="fname"   v-model="weight"><br>
-      <button class = "btn btn_search "  @click="search_weight()">{{content.weight_search[lang.get()]}}</button>
-      
-      
-    </div>
-    <div class = " search col-lg-6">
-      
-      <input type="text" id="fname" name="fname"    v-model="age" ><br>
-      <button class = "btn btn_search " @click="search_age()">{{content.age_search[lang.get()]}}</button>
+        <input type="text" id="fname" name="fname"   v-model="weight"><br>
+        <button class = "btn btn_search "  @click="search_weight()">{{content.weight_search[lang.get()]}}</button>
       
       
-    </div>
+      </div>
+      <div class = " search col-lg-6">
+      
+        <input type="text" id="fname" name="fname"    v-model="age" ><br>
+        <button class = "btn btn_search " @click="search_age()">{{content.age_search[lang.get()]}}</button>
+      
+      
+      </div>
 
-  </div>
+    </div>
   
 
-  <div class="add container col-lg-6 "  >
+    <div class="add container col-lg-12 "  >
 
-    
-    <Animal v-for="dog in types"  :key="dog.type" :animal="dog"  ></Animal>
-     
-     
-    
+      
+      <Animal v-for="dog in types"  :key="dog.type" :animal="dog"  ></Animal>
+      
+      
+      
+    </div>
+
   </div>
+
+  
 
  
 
@@ -50,7 +55,7 @@
 }
 
 .add {
-  display: flex;
+  
   height: 100%;
   align-items: center;
   justify-content: center;
@@ -85,6 +90,7 @@ export default {
   created() {
     if (lang.get() == 0) document.title = "Zivotinje u sklonistu - Spasko";
     else document.title = "Animals housed at - Spasko";
+    
     this.types = this.animals.filter(animal =>animal.type==this.$route.params.type)
     this.types_og = this.animals.filter(animal =>animal.type==this.$route.params.type)
   },
