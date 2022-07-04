@@ -129,8 +129,8 @@ export default{
     
         },
         created(){
-            if (lang.get() == 0) document.title = "Detalji zivotinja";
-            else document.title = "Animal details";
+            if (lang.get() == 0) document.title = "Detalji zivotinja -- Spasko";
+            else document.title = "Animal details -- Spasko";
             var animalId = Number(this.$route.params.id)
             this.animal = this.animals.find(animal=>animal.id==animalId)
         },

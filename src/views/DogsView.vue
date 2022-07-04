@@ -68,14 +68,12 @@ export default {
 
   created() {
     if (lang.get() == 0) document.title = "Zivotinje u sklonistu - Spasko";
-    else document.title = "Animals housed at - Spasko";
 
-    this.types = this.animals.filter(
-      (animal) => animal.type == this.$route.params.type
-    );
-    this.types_og = this.animals.filter(
-      (animal) => animal.type == this.$route.params.type
-    );
+    else document.title = "Animals housed at shelter - Spasko";
+    
+    this.types = this.animals.filter(animal =>animal.type==this.$route.params.type)
+    this.types_og = this.animals.filter(animal =>animal.type==this.$route.params.type)
+
   },
   data() {
     return {
@@ -109,12 +107,14 @@ export default {
       }
     },
     search_age() {
+
       if (this.age != "") {
         this.types = this.types_og.filter(
           (type) => type.age >= Number(this.age)
         );
       } else {
         this.types = this.types_og;
+
       }
     },
     selected(crumb) {
