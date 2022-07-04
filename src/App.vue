@@ -26,6 +26,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin-bottom: 40px;
 }
 .btn {
   background-color: #c80075;
